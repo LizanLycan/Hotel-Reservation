@@ -1,0 +1,34 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Reservation
+		
+block content
+	.container
+		if ReservationSubmitted
+			h3 Thanks for getting in touch.
+		else
+			.row: .col-sm-8.col-md-6
+				form(method='post')
+					input(type='hidden', name='action', value='contact')
+					.form-group(class=validationErrors.name ? 'has-error' : null)
+						label Nombre
+						input(type='text', name='name.full', value=formData['name.full']).form-control
+					.form-group(class=validationErrors.email ? 'has-error' : null)
+						label Email
+						input(type='email', name='email', value=formData.email).form-control
+					.form-group
+						label Telefono
+						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+					.form-group(class=validationErrors.roomCategory ? 'has-error' : null)
+						label Seleccion la Categoria
+						select(name='roomCategory').form-control
+							option(value='') (select one)
+							each type in roomCategory
+								option(value=type.value, selected=formData.roomCategory == type.value)= type.label
+					.form-group(class=validationErrors.message ? 'has-error' : null)
+						label Comentario
+						textarea(name='message', placeholder='LComenta informacion importante para la reservacion...' rows=4).form-control= formData.message
+					.form-actions
+						button(type='submit').btn.btn-primary Enviar
