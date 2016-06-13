@@ -8,7 +8,7 @@ exports = module.exports = function (req, res) {
 
 	// Set locals
 	locals.section = 'reservation';
-	locals.roomCategories = Reservation.fields.roomCategory.ops;
+	locals.roomCategory = Reservation.fields.roomCategory.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.ReservationSubmitted = false;
