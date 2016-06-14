@@ -9,12 +9,11 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible" content="IE=edge")
 
-		title= 'Lizandro Zerpa'
-		link(rel="shortcut icon", href="/letter-icon.ico", type="image/x-icon")
+		title= title || 'Hotel Estrella'
+		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
-		//- Customise the stylesheet for your site by editing /public/styles/site.less
-		//- All .less files will be automatically compiled and minified in production.
-		link(rel="stylesheet" href="/assets/css/main.css")
+		//- Customise the stylesheet for your site by editing /public/styles/site.sass
+		link(href="/styles/site.css", rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -29,11 +28,12 @@ html
 
 		//- Include template-specific stylesheets by extending the css block
 		block css
+
 		//- Add any other template-specific HEAD tags by extending the head block
 		block head
 
 	//- HTML BODY
-	body.landing
+	body
 
 		//- HEADER
 		#header: .container
@@ -41,21 +41,22 @@ html
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
 
-			div(id="page-wrapper")
-				header(id="header")
-						h1(id="logo"): a(href="/") Lizandro Zerpa
-						nav(id="nav")
-							ul
-								each link in navLinks
-									li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-								
-								if user
-									if user.canAccessKeystone
-										li: a(href='/keystone') Open Keystone
-									li: a(href='/keystone/signout') Sign Out
-								else
-									li: a(href='/keystone/signin') Sign In
-									
+			div(role="navigation").navbar.navbar-default
+				.container-fluid
+					.navbar-header
+						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+							span.sr-only Toggle navigation
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+						a.navbar-brand(href='/')
+							img.img-logo(src="/images/logo.png", alt="")
+					.collapse.navbar-collapse
+						ul.nav.navbar-nav.navbar-left
+							each link in navLinks
+								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+					
+
 		//- BODY
 		#body
 
@@ -74,6 +75,36 @@ html
 			block content
 
 
+		//- FOOTER
+		#footer
+			.row.footer
+				.col-lg-3
+					h4 ABOUT STARHOTEL
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
+					br
+					p Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla semper vitae felis vitae dapibus.
+				.col-lg-3
+					h4 RECIBE NUESTRO BOLETIN
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
+					form
+						.form-group
+							input(type='email', name='email', value="", placeholder="Ingresa tu correo").form-control
+							button(type='submit').btn.btn-footer Enviar
+				.col-lg-3
+					h4 DE NUESTRO BLOG
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					hr
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					hr
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+				.col-lg-3
+					h4 ADDRESS
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					hr
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					hr
+					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+
 		//- JAVASCRIPT
 
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
@@ -84,15 +115,6 @@ html
 		//- Customise which Bootstrap javascript files are served by including
 		//- them specifically here, instead of bootstrap-3.3.5.min.js
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
-
-		//- del nuevo template
-		script(src="/assets/js/jquery.min.js")
-		script(src="/assets/js/jquery.scrolly.min.js")
-		script(src="/assets/js/jquery.dropotron.min.js")
-		script(src="/assets/js/jquery.scrollex.min.js")
-		script(src="/assets/js/skel.min.js")
-		script(src="/assets/js/util.js")
-		script(src="/assets/js/main.js")
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
