@@ -21,7 +21,7 @@ exports = module.exports = function (req, res) {
 
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'name, email, phone, roomCategory, message',
+			fields: 'name, email, phone, roomCategory, comment',
 			errorMessage: 'There was a problem submitting your Reservation:',
 		}, function (err) {
 			if (err) {

@@ -11,7 +11,7 @@ block content
 		else
 			.row: .col-sm-8.col-md-6
 				form(method='post')
-					input(type='hidden', name='action', value='contact')
+					input(type='hidden', name='action', value='reservation')
 					.form-group(class=validationErrors.name ? 'has-error' : null)
 						label Nombre
 						input(type='text', name='name.full', value=formData['name.full']).form-control
@@ -27,8 +27,11 @@ block content
 							option(value='') (select one)
 							each type in roomCategory
 								option(value=type.value, selected=formData.roomCategory == type.value)= type.label
-					.form-group(class=validationErrors.message ? 'has-error' : null)
+					.form-group
+						label Check In
+						input(color="red", type="date", name="datepicker", value="DD/MM/YY").form-control
+					.form-group(class=validationErrors.comment ? 'has-error' : null)
 						label Comentario
-						textarea(name='message', placeholder='LComenta informacion importante para la reservacion...' rows=4).form-control= formData.message
+						textarea(name='comment', placeholder='Comenta informacion importante para la reservacion...' rows=4).form-control= formData.comment
 					.form-actions
 						button(type='submit').btn.btn-primary Enviar

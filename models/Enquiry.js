@@ -48,8 +48,8 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
 		if (err) return callback(err);
 
     new keystone.Email({
-        templateExt: 'hbs',
-    	templateEngine: require('express-handlebars'),
+        //templateExt: 'hbs',
+    	//templateEngine: require('express-handlebars'),
         templateName: 'enquiry-notification'
       }).send({
         to: admins,

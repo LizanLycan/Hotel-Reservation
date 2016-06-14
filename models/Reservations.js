@@ -16,8 +16,8 @@ Reservation.add({
 	name: { type: Types.Name, required: true },
 	email: { type: Types.Email, required: true },
 	phone: { type: String },
-	dateIn: { type: Types.Date, required: true },
-	dateOut: { type: Types.Date, required: true },
+	//dateIn: { type: Types.Date, required: true },
+	//dateOut: { type: Types.Date, required: true },
 	roomCategory: { type: Types.Select, options: [
 		{ value: 'Sencillo', label: 'Habitacion sencilla con cama individual' },
 		{ value: 'Doble', label: 'Habitacion sencilla con dos camas individuales' },
@@ -68,5 +68,5 @@ Reservation.schema.methods.sendNotificationEmail = function(callback) {
 };
 
 Reservation.defaultSort = '-createdAt';
-Reservation.defaultColumns = 'clent, dateIn, dateOut, roomCategory, createdAt';
+Reservation.defaultColumns = 'clent, roomCategory, createdAt';
 Reservation.register();

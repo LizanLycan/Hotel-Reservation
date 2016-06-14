@@ -68,8 +68,8 @@ keystone.set('email locals', {
 });
 
 // Load your project's email test routes
-keystone.Email.defaults.templateExt = 'hbs';
-keystone.Email.defaults.templateEngine = require('handlebars');
+keystone.set('mandrill api key', 'a20737c32edbcd05ddcfcf1f1886df2d-us13');
+keystone.set('mandrill username', 'Lizandro Zerpa');
 keystone.set('email tests', require('./routes/emails'));
 
 
