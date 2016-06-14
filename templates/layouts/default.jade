@@ -76,35 +76,36 @@ html
 
 
 		//- FOOTER
-		#footer
-			.row.footer
-				.col-lg-3
-					h4 ABOUT STARHOTEL
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
-					br
-					p Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla semper vitae felis vitae dapibus.
-				.col-lg-3
-					h4 RECIBE NUESTRO BOLETIN
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
-					form
-						.form-group
-							input(type='email', name='email', value="", placeholder="Ingresa tu correo").form-control
-							button(type='submit').btn.btn-footer Enviar
-				.col-lg-3
-					h4 DE NUESTRO BLOG
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-					hr
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-					hr
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-				.col-lg-3
-					h4 ADDRESS
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-					hr
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-					hr
-					p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
-
+		#footer.footer: .container
+				.row
+					.col-lg-3
+						h4 ABOUT STARHOTEL
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
+						p Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla semper vitae felis vitae dapibus.
+					.col-lg-3
+						h4 RECIBE NUESTRO BOLETIN
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat. 
+						form
+							.form-group
+								input(type='email', name='email', value="", placeholder="Ingresa tu correo").form-control
+								button(type='submit').btn.btn-footer Enviar
+					.col-lg-3
+						h4 DE NUESTRO BLOG
+						p.blog-footer Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					
+						p.blog-footer Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+						
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					.col-lg-3
+						h4 ADDRESS
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+					
+						p Suspendisse sed sollicitudin nisl, at dignissim libero. Sed 22 julio 2016. 
+				.row.copyright: .container
+					p #[span(class="glyphicon glyphicon-copyright-mark" aria-hidden="true")] 2016 Starhotel All Rights Reserved
+				
 		//- JAVASCRIPT
 
 		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
