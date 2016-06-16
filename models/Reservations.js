@@ -8,24 +8,24 @@ var Types = keystone.Field.Types;
 
 var Reservation = new keystone.List('Reservation', {
 	nocreate: true,
-	noedit: true,
+	//noedit: true,
 });
 
 Reservation.add({
-	//client: { type: Types.Relationship, ref: 'User', index: true },
-	name: { type: Types.Name, required: true },
-	email: { type: Types.Email, required: true },
+	client: { type: Types.Relationship, ref: 'User', initial: true, index: true},
+	name: { type: Types.Name/*, required: true*/ },
+	email: { type: Types.Email/*, required: true*/ },
 	phone: { type: String },
-	//dateIn: { type: Types.Date, required: true },
-	//dateOut: { type: Types.Date, required: true },
+	dateIn: { type: Types.Datetime, index:true, required: true },
+	dateOut: { type: Types.Datetime, index: true, require: true },
 	roomCategory: { type: Types.Select, options: [
 		{ value: 'Sencillo', label: 'Habitacion sencilla con cama individual' },
 		{ value: 'Doble', label: 'Habitacion sencilla con dos camas individuales' },
 		{ value: 'Matrimonial', label: 'Habitacion sencilla con cama Matrimonial' },
 		{ value: 'Triple', label: 'Habitacion sencilla con cama Matrimonial y una individual'},
 	] },
-	comment: { type: Types.Markdown, required: true },
-	createdAt: { type: Date, default: Date.now },
+	comment: { type: Types.Markdown},
+	createdAt: { type: Date, default: Date.now }
 });
 
 Reservation.schema.pre('save', function(next) {
@@ -68,5 +68,5 @@ Reservation.schema.methods.sendNotificationEmail = function(callback) {
 };
 
 Reservation.defaultSort = '-createdAt';
-Reservation.defaultColumns = 'clent, roomCategory, createdAt';
+Reservation.defaultColumns = 'client|20%, name, roomCategory, createdAt';
 Reservation.register();

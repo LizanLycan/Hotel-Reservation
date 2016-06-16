@@ -9,19 +9,21 @@ exports = module.exports = function (req, res) {
 	// Set locals
 	locals.section = 'reservation';
 	locals.roomCategory = Reservation.fields.roomCategory.ops;
-	locals.formData = req.body || {};
+	locals.formData = req.body && {currentDate : new Date().toJSON().split('T')[0]};
 	locals.validationErrors = {};
 	locals.ReservationSubmitted = false;
+
+
 
 	// On POST requests, add the Reservation item to the database
 	view.on('post', { action: 'reservation' }, function (next) {
 
-		var newReservation = new Reservation.model();
+		var newReservation = new Reservation.model({client: req.user});
 		var updater = newReservation.getUpdateHandler(req);
 
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'name, email, phone, roomCategory, comment',
+			fields: 'name, email, phone, roomCategory, dateIn, dateOut, comment',
 			errorMessage: 'There was a problem submitting your Reservation:',
 		}, function (err) {
 			if (err) {
@@ -33,5 +35,6 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
+	
 	view.render('reservation');
 };

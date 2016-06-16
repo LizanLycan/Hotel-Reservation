@@ -8,30 +8,58 @@ block content
 	.container
 		if ReservationSubmitted
 			h3 Thanks for getting in touch.
+			h1= formData.email+ formData.dateIn
 		else
-			.row: .col-sm-8.col-md-6
-				form(method='post')
-					input(type='hidden', name='action', value='reservation')
-					.form-group(class=validationErrors.name ? 'has-error' : null)
-						label Nombre
-						input(type='text', name='name.full', value=formData['name.full']).form-control
-					.form-group(class=validationErrors.email ? 'has-error' : null)
-						label Email
-						input(type='email', name='email', value=formData.email).form-control
-					.form-group
-						label Telefono
-						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
-					.form-group(class=validationErrors.roomCategory ? 'has-error' : null)
-						label Seleccion la Categoria
-						select(name='roomCategory').form-control
-							option(value='') (select one)
-							each type in roomCategory
-								option(value=type.value, selected=formData.roomCategory == type.value)= type.label
-					.form-group
-						label Check In
-						input(color="red", type="date", name="datepicker", value="DD/MM/YY").form-control
-					.form-group(class=validationErrors.comment ? 'has-error' : null)
-						label Comentario
-						textarea(name='comment', placeholder='Comenta informacion importante para la reservacion...' rows=4).form-control= formData.comment
-					.form-actions
-						button(type='submit').btn.btn-primary Enviar
+			h1= formData.currentDate
+			if user
+				.row: .col-sm-8.col-md-6
+					form(method='post')
+						input(type='hidden', name='action', value='reservation')
+						.form-group(class=validationErrors.roomCategory ? 'has-error' : null)
+							label Seleccion la Categoria
+							select(name='roomCategory').form-control
+								option(value='') (select one)
+								each type in roomCategory
+									option(value=type.value, selected=formData.roomCategory == type.value)= type.label
+						.form-group(class=validationErrors.dateIn ? 'has-error' : null)
+							label Check In
+							input(type="date", id="dateIn", name="dateIn", min= formData.currentDate, value=formData.dateIn).form-control
+						.form-group(class=validationErrors.dateOut ? 'has-error' : null)
+							label Check Out
+							input(type="date", name="dateOut", min=formData.currentDate, value=formData.dateOut).form-control
+						.form-group(class=validationErrors.comment ? 'has-error' : null)
+							label Comentario
+							textarea(name='comment', placeholder='Comenta informacion importante para la reservacion...' rows=4).form-control= formData.comment
+						.form-actions
+							button(type='submit').btn.btn-primary Enviar
+
+			else
+				.row: .col-sm-8.col-md-6
+					form(method='post')
+						input(type='hidden', name='action', value='reservation')
+						.form-group(class=validationErrors.name ? 'has-error' : null)
+							label Nombre
+							input(type='text', name='name.full', value=formData['name.full'], default='Ver...').form-control
+						.form-group(class=validationErrors.email ? 'has-error' : null)
+							label Email
+							input(type='email', name='email', value=formData.email).form-control
+						.form-group
+							label Telefono
+							input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
+						.form-group(class=validationErrors.roomCategory ? 'has-error' : null)
+							label Seleccion la Categoria
+							select(name='roomCategory').form-control
+								option(value='') (select one)
+								each type in roomCategory
+									option(value=type.value, selected=formData.roomCategory == type.value)= type.label
+						.form-group(class=validationErrors.dateIn ? 'has-error' : null)
+							label Check In
+							input(type="date", id="dateIn", name="dateIn", min= formData.currentDate, value=formData.dateIn).form-control
+						.form-group(class=validationErrors.dateOut ? 'has-error' : null)
+							label Check Out
+							input(type="date", name="dateOut", min=formData.currentDate, value=formData.dateOut).form-control
+						.form-group(class=validationErrors.comment ? 'has-error' : null)
+							label Comentario
+							textarea(name='comment', placeholder='Comenta informacion importante para la reservacion...' rows=4).form-control= formData.comment
+						.form-actions
+							button(type='submit').btn.btn-primary Enviar
